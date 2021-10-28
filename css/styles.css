@@ -1,0 +1,80 @@
+:root {
+    --bg-1:blue;
+    --cp-1:white;
+    --cp-2:black;
+}
+/* CLASS TITLE */
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    text-align: center;
+}
+.h1 {
+    color: var(--cp-1);
+}
+.h2 {
+    color: var(--cp-2);
+}
+.h3 {
+    color: var(--cp-1);
+}
+.h4 {
+    color: var(--cp-1);
+}
+.h5 {
+    color: var(--cp-1);
+}
+.h6 {
+    color: var(--cp-1);
+}
+.container-fluid {
+    width: 100%;
+}
+.container-signup {
+    width: 60%;
+    margin: 0 auto;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+
+.bg-1 {
+    background-color: var(--bg-1);
+}
+.general-header{
+    height: 10vh;
+    align-items: center;
+    color: var(--cp-1);
+}
+.h1 {
+    width: 50%;
+}
+.main-nav {
+    width: 50%;
+    list-style: none;
+    justify-content: space-evenly;
+}
+.main-nav a {
+    text-decoration: none;
+    color: var(--cp-1);
+}
+
+/* SIGN UP PAGE */
+.signup-form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.signup-form input{
+    width: 40%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
