@@ -21,13 +21,17 @@
                 <nav class="main-nav row">
                     <li><a href="index.php">Home</a></li>
                     <?php
-                    if (isset($_SESSION["useruid"])) {
-                        echo '<li><a href="profile.php">'.$_SESSION["useruid"].'</a></li>';
-                        echo '<li><a href="process/logout.process.php">Log Out</a></li>';
+                    if (isset($_SESSION["userUid"])) {
+                    ?>
+                        <li><a href="profile.php"><?php echo $_SESSION["userUid"]?></a></li>
+                        <li><a href="process/logout.process.php">Log Out</a></li>
+                    <?php
                     }
                     else {
-                        echo '<li><a href="signup.php">Sign up</a></li>';
-                        echo '<li><a href="signin.php">Login</a></li>';
+                    ?>
+                        <li><a href="signup.php">Sign up</a></li>
+                        <li><a href="signin.php">Login</a></li>
+                    <?php
                     }
                     ?>
                 </nav>

@@ -1,27 +1,25 @@
 <?php
-class SignupControler extends signup{
+class updateControler extends update{
+    
     private $name;
     private $surname;
     private $username;
     private $email;
     private $password;
     private $passwordVerify;
+    private $oldPassword;
 
-    public function __construct($name, $surname, $username, $email, $password, $passwordVerify) {
+    public function __construct($name, $surname, $username, $email, $password, $passwordVerify, $oldPassword) {
         $this->name = $name;
         $this->surname = $surname;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->passwordVerify = $passwordVerify;
+        $this->oldPassword = $oldPassword;
     }
 
-    public function signupUser() {
-        if($this->emptyInput() == false) {
-            // echo "XXXXXXX"
-            header("location: ../signup.php?error=emptyInput");
-            exit();
-        }
+    public function updateUser() {
         if($this->invalidUid() == false) {
             header("location: ../signup.php?error=invalidUid");
             exit();
@@ -38,19 +36,12 @@ class SignupControler extends signup{
             header("location: ../signup.php?error=uidAlreadyTaken");
             exit();
         }
-        $this->setUser($this->name, $this->surname, $this->username, $this->email, $this->password);
-    }
-    private function emptyInput() {
-        $result;
-        if(empty($this->name) || empty($this->surname) || empty($this->username) || empty($this->email) || empty($this->password) || empty($this->passwordVerify)) {
-            $result = false;
+        if($this->emptyOldPassword() == false) {
+            echo "You need to feel your password for any change !"
+            exit();
         }
-        else {
-            $result = true;
-        }
-        return $result; 
+        $this->updateProfileUser($this->name, $this->surname, $this->username, $this->email,  $this->password, $this->oldPassword);
     }
-
     private function invalidUid() {
         $result;
         if(!preg_match("/^[a-zA-Z0-9]*$/", $this->username)) {
@@ -61,7 +52,7 @@ class SignupControler extends signup{
         }
         return $result;  
     }
-
+    
     private function invalidEmail() {
         $result;
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
@@ -72,7 +63,7 @@ class SignupControler extends signup{
         }
         return $result;  
     }
-
+    
     private function passwordMatch() {
         $result;
         if($this->password !== $this->passwordVerify) {
@@ -83,7 +74,7 @@ class SignupControler extends signup{
         }
         return $result;  
     }
-
+    
     private function uidAlreadyTaken() {
         $result;
         if(!$this->checkUser($this->username, $this->email)) {
@@ -93,5 +84,27 @@ class SignupControler extends signup{
             $result = true;
         }
         return $result;  
+    }
+
+    private function passwordVerify() {
+        $result;
+        if(!$this->checkPassword($this->oldPassword)) {
+            $result = false;
+        }
+        else {
+            $result = true;
+        }
+        return $result;  
+    }
+
+    private function emptyOldPassword() {
+        $result;
+        if(empty($this->oldPassword)) {
+            $result = false;
+        }
+        else {
+            $result = true;
+        }
+        return $result; 
     }
 }
