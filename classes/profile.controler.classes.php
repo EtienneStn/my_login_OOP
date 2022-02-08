@@ -37,13 +37,12 @@ class updateControler extends update{
             exit();
         }
         if($this->emptyOldPassword() == false) {
-            echo "You need to feel your password for any change !"
+            echo "You need to fill your password for any change !";
             exit();
         }
         $this->updateProfileUser($this->name, $this->surname, $this->username, $this->email,  $this->password, $this->oldPassword);
     }
     private function invalidUid() {
-        $result;
         if(!preg_match("/^[a-zA-Z0-9]*$/", $this->username)) {
             $result = false;
         }
@@ -54,7 +53,6 @@ class updateControler extends update{
     }
     
     private function invalidEmail() {
-        $result;
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $result = false;
         }
@@ -65,7 +63,6 @@ class updateControler extends update{
     }
     
     private function passwordMatch() {
-        $result;
         if($this->password !== $this->passwordVerify) {
             $result = false;
         }
@@ -76,7 +73,6 @@ class updateControler extends update{
     }
     
     private function uidAlreadyTaken() {
-        $result;
         if(!$this->checkUser($this->username, $this->email)) {
             $result = false;
         }
@@ -87,7 +83,6 @@ class updateControler extends update{
     }
 
     private function passwordVerify() {
-        $result;
         if(!$this->checkPassword($this->oldPassword)) {
             $result = false;
         }
@@ -98,7 +93,6 @@ class updateControler extends update{
     }
 
     private function emptyOldPassword() {
-        $result;
         if(empty($this->oldPassword)) {
             $result = false;
         }

@@ -41,7 +41,6 @@ class SignupControler extends signup{
         $this->setUser($this->name, $this->surname, $this->username, $this->email, $this->password);
     }
     private function emptyInput() {
-        $result;
         if(empty($this->name) || empty($this->surname) || empty($this->username) || empty($this->email) || empty($this->password) || empty($this->passwordVerify)) {
             $result = false;
         }
@@ -52,7 +51,6 @@ class SignupControler extends signup{
     }
 
     private function invalidUid() {
-        $result;
         if(!preg_match("/^[a-zA-Z0-9]*$/", $this->username)) {
             $result = false;
         }
@@ -63,7 +61,6 @@ class SignupControler extends signup{
     }
 
     private function invalidEmail() {
-        $result;
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $result = false;
         }
@@ -74,7 +71,6 @@ class SignupControler extends signup{
     }
 
     private function passwordMatch() {
-        $result;
         if($this->password !== $this->passwordVerify) {
             $result = false;
         }
@@ -85,7 +81,6 @@ class SignupControler extends signup{
     }
 
     private function uidAlreadyTaken() {
-        $result;
         if(!$this->checkUser($this->username, $this->email)) {
             $result = false;
         }

@@ -18,7 +18,6 @@ class SigninControler extends signin{
         $this->getUser($this->username, $this->password);
     }
     private function emptyInput() {
-        $result;
         if(empty($this->username) || empty($this->password)) {
             $result = false;
         }
